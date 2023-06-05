@@ -9,17 +9,9 @@ import requests
 from rich import print
 from rich.progress import Progress
 
-parser = argparse.ArgumentParser(prog="python script.py", description="Scrape SBS on Demand and save to JSON file")
-parser.add_argument("-o", "--output", type=str, help="Name of file to output JSON", required=True)
-parser.add_argument("-d", "--delay", type=int, help="Delay between requests in ms. Default is 1000ms", default=1000)
-
-args = parser.parse_args()
-
-save_filename = args.output
-delay_seconds = args.delay / 1000
 url = "https://catalogue.pr.sbsod.com/collections/all-movies"
 
-def get_num_movies():
+def get_num_movies() -> int:
     default_value = 1000
     try:
         res = requests.get(url)
@@ -29,7 +21,7 @@ def get_num_movies():
     except Exception as e:
         return default_value
 
-def scrape():
+def scrape(max_pages: int = math.inf, delay_seconds: float = 1) -> list[dict]:
     i = 1
     items = []
     num_movies = get_num_movies()
@@ -42,7 +34,8 @@ def scrape():
         task = progress.add_task("[blue]Scraping SBS on Demand...", total=num_pages)
 
         while True:
-            progress.update(task, advance=1)
+            if i > max_pages:
+                break
 
             data = {
                 "genre": "",
@@ -70,13 +63,31 @@ def scrape():
                 break
 
             items.extend(json_results["items"])
+
             i += 1
             sleep(delay_seconds)
+            progress.update(task, advance=1)
 
         return items
 
-os.makedirs(os.path.dirname(save_filename), exist_ok=True)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(prog="python script.py", description="Scrape SBS on Demand and save to JSON file")
+    parser.add_argument("-o", "--output", type=str, help="Name of file to output JSON", required=True)
+    parser.add_argument("-d", "--delay", type=int, help="Delay between requests in ms. Default is 1000ms", default=1000)
 
-with (open(save_filename, "w")) as f:
-    items = scrape()
-    json.dump(items, f)
+    args = parser.parse_args()
+
+    save_filename = args.output
+
+    delay_seconds = args.delay / 1000
+
+    try:
+        if not os.path.exists(os.path.dirname(save_filename)) and not os.path.dirname(save_filename) == "":
+            os.makedirs(os.path.dirname(save_filename))
+    except Exception as e:
+        print(f"[red]Error creating directory: {e}[/red]")
+
+    items = scrape(delay_seconds=delay_seconds)
+
+    with (open(save_filename, "w")) as f:
+        json.dump(items, f)
