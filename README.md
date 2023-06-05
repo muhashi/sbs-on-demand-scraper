@@ -2,7 +2,7 @@
 
 Scrapes movie data from SBS on Demand into a JSON file
 
-![image](https://github.com/muhashi/sbsondemand-scraper/assets/105213357/b374589b-e1e2-46c6-b1b6-9ba0a4aafb4a)
+![image](https://github.com/muhashi/sbsondemand-scraper/assets/105213357/244dc2e5-f4ba-492c-86ad-677b3d056cf6)
 
 # Installation
 
