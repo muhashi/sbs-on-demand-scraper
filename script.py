@@ -9,7 +9,7 @@ import requests
 from rich import print
 from rich.progress import Progress
 
-parser = argparse.ArgumentParser(description="Scrape SBS on Demand and save to JSON file")
+parser = argparse.ArgumentParser(prog="python script.py", description="Scrape SBS on Demand and save to JSON file")
 parser.add_argument("-o", "--output", type=str, help="Name of file to output JSON", required=True)
 parser.add_argument("-d", "--delay", type=int, help="Delay between requests in ms. Default is 1000ms", default=1000)
 
