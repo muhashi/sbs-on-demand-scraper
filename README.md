@@ -7,8 +7,8 @@ Scrapes movie data from SBS on Demand into a JSON file
 # Installation
 
 ```
-git clone https://github.com/muhashi/sbsondemand-scraper.git
-cd sbsondemand-scraper
+git clone https://github.com/muhashi/sbs-on-demand-scraper.git
+cd sbs-on-demand-scraper
 pip install -r requirements
 python script.py --help
 ```
