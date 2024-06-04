@@ -16,10 +16,11 @@ def validate_movie(movie: dict):
     assert isinstance(movie.get("images"), list)
     assert isinstance(movie.get("distributors"), list)
     assert isinstance(movie.get("duration"), str)
+    assert isinstance(movie.get("cdpTitle"), str)
     assert isinstance(movie.get("mpxMediaID"), int)
     assert isinstance(movie.get("releaseYear"), int)
     
-    assert len(movie) == 16
+    assert len(movie) == 17
 
 def test_get_num_movies():
     num_movies = get_num_movies()
