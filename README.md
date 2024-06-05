@@ -80,6 +80,7 @@ The output format depends on what [SBS's API](https://catalogue.pr.sbsod.com/col
         "name": "Umbrella Entertainment"
       }
     ],
+    "cdpTitle": "Teenage Mutant Ninja Turtles II: The Secret of the Ooze (1991)",
     "duration": "PT1H24M53S",
     "mpxMediaID": 2062068291765,
     "releaseYear": 1991
