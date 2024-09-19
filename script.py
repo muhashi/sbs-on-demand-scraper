@@ -5,6 +5,7 @@ import math
 import os
 from time import sleep
 
+import pandas as pd
 import requests
 from rich import print
 from rich.progress import Progress
@@ -71,9 +72,10 @@ def scrape(max_pages: int = math.inf, delay_seconds: float = 1) -> list[dict]:
         return items
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(prog="python script.py", description="Scrape SBS on Demand and save to JSON file")
-    parser.add_argument("-o", "--output", type=str, help="Name of file to output JSON", required=True)
+    parser = argparse.ArgumentParser(prog="python script.py", description="Scrape SBS on Demand and save to file")
+    parser.add_argument("-o", "--output", type=str, help="Name of file to output data", required=True)
     parser.add_argument("-d", "--delay", type=int, help="Delay between requests in ms. Default is 1000ms", default=1000)
+    parser.add_argument("-c", "--csv", help="Whether to save data as a CSV", action="store_true")
 
     args = parser.parse_args()
 
@@ -90,4 +92,8 @@ if __name__ == "__main__":
     items = scrape(delay_seconds=delay_seconds)
 
     with (open(save_filename, "w")) as f:
-        json.dump(items, f)
+        if args.csv:
+            df = pd.DataFrame.from_dict(items)
+            df.to_csv(path_or_buf=f, index=False)
+        else:
+            json.dump(items, f)

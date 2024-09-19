@@ -24,14 +24,15 @@ This will display the (very few) options
 ```yaml
 usage: python script.py [-h] -o OUTPUT [-d DELAY]
 
-Scrape SBS on Demand and save to JSON file
+Scrape SBS on Demand and save to file
 
 options:
   -h, --help            show this help message and exit
   -o OUTPUT, --output OUTPUT
-                        Name of file to output JSON
+                        Name of file to output data
   -d DELAY, --delay DELAY
                         Delay between requests in ms. Default is 1000ms
+  -c, --csv             Whether to save data as a CSV
 ```
 # Output
 
