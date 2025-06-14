@@ -1,4 +1,4 @@
 requests==2.32.4
 rich==14.0.0
-pytest==8.3.5
+pytest==8.4.0
 pandas==2.2.3
