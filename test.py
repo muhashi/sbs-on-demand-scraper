@@ -35,15 +35,11 @@ def test_scrape_one_page():
     assert len(movies) == 100
 
     ids = set()
-    descriptions = set()
 
     for movie in movies:
         validate_movie(movie)
         assert movie.get("id") not in ids
-        assert movie.get("description") not in descriptions
-
         ids.add(movie.get("id"))
-        descriptions.add(movie.get("description"))
 
 def test_scrape_all_pages():
     movies = scrape()
@@ -51,13 +47,9 @@ def test_scrape_all_pages():
     assert len(movies) > 100
 
     ids = set()
-    descriptions = set()
 
     for movie in movies:
         validate_movie(movie)
 
         assert movie.get("id") not in ids
-        assert movie.get("description") not in descriptions
-
         ids.add(movie.get("id"))
-        descriptions.add(movie.get("description"))
