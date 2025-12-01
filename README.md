@@ -45,6 +45,7 @@ The output format depends on what [SBS's API](https://catalogue.pr.sbsod.com/col
     "entityType": "MOVIE",
     "title": "Teenage Mutant Ninja Turtles II: The Secret of the Ooze",
     "slug": "teenage-mutant-ninja-turtles-ii-the-secret-of-the-",
+    /* Description field is missing on some entries */
     "description": "The turtles team up with a news reporter against Shredder, who wants to create mutant monsters using the same radioactive material that created them.",
     "genres": [
       "Children",

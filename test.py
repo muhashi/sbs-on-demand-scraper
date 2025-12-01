@@ -6,7 +6,6 @@ def validate_movie(movie: dict):
     assert isinstance(movie.get("entityType"), str)
     assert isinstance(movie.get("title"), str)
     assert isinstance(movie.get("slug"), str)
-    assert isinstance(movie.get("description"), str)
     assert isinstance(movie.get("genres"), list)
     assert isinstance(movie.get("languages"), list)
     assert isinstance(movie.get("textTracks"), list)
@@ -20,7 +19,7 @@ def validate_movie(movie: dict):
     assert isinstance(movie.get("mpxMediaID"), int)
     assert isinstance(movie.get("releaseYear"), int)
     
-    assert len(movie) == 17
+    assert len(movie) == 16 or len(movie) == 17  # depending on optional fields
 
 def test_get_num_movies():
     num_movies = get_num_movies()
